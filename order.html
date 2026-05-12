@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Food</title>
+
+    <!-- Same CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<!-- Navbar -->
+<section class="navbar">
+    <div class="container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.png" class="img-responsive">
+            </a>
+        </div>
+
+        <div class="menu text-right">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Foods</a></li>
+            </ul>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</section>
+
+<!-- Order Section -->
+<section class="food-menu">
+    <div class="container">
+<p id="successMessage"></p>
+         <form id="orderForm" onsubmit="return placeOrder()">
+
+            <h2 class="text-center">Place Your Order</h2>
+<form id="orderForm">
+
+    <!-- ADD HERE -->
+    <div class="order-label">SELECT FOOD</div>
+    <select id="foodSelect" class="input-responsive" onchange="updateFood()">
+        <option value="pizza">Pizza</option>
+        <option value="burger">Burger</option>
+        <option value="momo">Momo</option>
+    </select>
+
+    <!-- Existing code -->
+    <fieldset class="order-form">
+
+            <fieldset>
+    <legend >Selected Food</legend>
+
+    <div class="food-menu-img">
+        <img id="foodImage" src="images/menu-pizza.jpg" class="img-responsive img-curve">
+    </div>
+
+    <div class="food-menu-desc">
+        <h3 id="foodName">Pizza</h3>
+        <p class="food-price" id="foodPrice">$2.3</p>
+
+        <div class="order-label">Quantity</div>
+        <input type="number" id="qty" value="1" class="input-responsive">
+    </div>
+</fieldset>
+
+            <fieldset>
+                <legend>Delivery Details</legend>
+
+                <div class="order-label">Full Name</div>
+                <input type="text" name="full-name" placeholder="Enter your name" class="input-responsive" required>
+
+                <div class="order-label">Phone Number</div>
+                <input type="tel" name="contact" placeholder="Enter your phone" class="input-responsive" required>
+
+                <div class="order-label">Email</div>
+                <input type="email" name="email" placeholder="Enter your email" class="input-responsive">
+
+                <div class="order-label">Address</div>
+                <textarea name="address" rows="5" placeholder="Enter your address" class="input-responsive" required></textarea>
+
+                <input type="submit"  value="Confirm Order" class="btn btn-primary">
+            </fieldset>
+
+        </form>
+
+    </div>
+</section>
+
+<!-- Social -->
+<section class="social">
+    <div class="container text-center">
+        <ul>
+            <li>
+                <a href="#"><img src="https://img.icons8.com/fluent/50/000000/facebook-new.png"/></a>
+            </li>
+            <li>
+                <a href="#"><img src="https://img.icons8.com/fluent/48/000000/instagram-new.png"/></a>
+            </li>
+            <li>
+                <a href="#"><img src="https://img.icons8.com/fluent/48/000000/twitter.png"/></a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+
+<script>
+function updateFood() {
+    let selected = document.getElementById("foodSelect").value;
+
+    let image = document.getElementById("foodImage");
+    let name = document.getElementById("foodName");
+    let price = document.getElementById("foodPrice");
+
+    if (selected === "pizza") {
+        image.src = "images/menu-pizza.jpg";
+        name.innerText = "Pizza";
+        price.innerText = "$2.3";
+    }
+
+    else if (selected === "burger") {
+        image.src = "images/menu-burger.jpg";
+        name.innerText = "Burger";
+        price.innerText = "$1.8";
+    }
+
+    else if (selected === "momo") {
+        image.src = "images/menu-momo.jpg";
+        name.innerText = "Momo";
+        price.innerText = "$1.5";
+    }
+}
+ 
+function placeOrder() {
+    // show message
+    document.getElementById("successMessage").innerText = "✅ Order placed successfully!";
+
+    // clear form
+    document.getElementById("orderForm").reset();
+
+    // stop page reload
+    return false;
+}
+
+window.onload = updateFood;
+</script>
+</body>
+</html>
